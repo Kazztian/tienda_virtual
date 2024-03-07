@@ -28,33 +28,10 @@ if(!empty($arrUrl[2]))
     }
 }
 
-
-spl_autoload_register(function($class){
-    // Controllers/Home.php
-    if(file_exists('Controllers/'.$class.".php")){
-        require_once('Controllers/'.$class.".php");
-    }
-});
-
-
+//AUTOLOAD
+require_once("Libraries/Core/Autoload.php");
 //LOAD
-//LOAD
-$controllerFile = "Controllers/".$controller.".php";
-if(file_exists($controllerFile)) {
-    require_once($controllerFile);
-    $controllerInstance = new $controller();
-    if(method_exists($controllerInstance, $method)) {
-        $controllerInstance->{$method}($params);
-    } else {
-        echo "Método no encontrado";
-    }
-} else {
-    echo "No existe controlador";
-}
-
-
-
-
+require_once("Libraries/Core/Load.php")
 // echo "<br>";
 // echo "Contolador: ". $controller;
 // echo "<br>";
